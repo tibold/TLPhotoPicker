@@ -31,6 +31,7 @@ open class TLPlayerView: UIView {
 
 open class TLPhotoCollectionViewCell: UICollectionViewCell {
     private var observer: NSObjectProtocol?
+    open var phAsset: PHAsset?
     @IBOutlet open var imageView: UIImageView?
     @IBOutlet open var playerView: TLPlayerView?
     @IBOutlet open var livePhotoView: PHLivePhotoView?

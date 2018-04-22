@@ -743,9 +743,9 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
                 print("not supported by the simulator.")
                 return
             }else {
-                if self.configure.cameraCellNibSet?.nibName != nil {
+                if (self.configure.cameraCellNibSet?.nibName) != nil {
                     cell.selectedCell()
-                }else {
+                } else {
                     showCameraIfAuthorized()
                 }
                 self.logDelegate?.selectedCameraCell(picker: self)
@@ -849,6 +849,7 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
                     guard let `self` = self else { return }
                     DispatchQueue.main.async {
                         if self.requestIds[indexPath] != nil {
+                            cell?.phAsset = phAsset
                             cell?.imageView?.image = image
                             cell?.update(with: phAsset)
                             if self.allowedVideo {
@@ -870,6 +871,7 @@ extension TLPhotosPickerViewController: UICollectionViewDelegate,UICollectionVie
                     let requestId = self.photoLibrary.imageAsset(asset: phAsset, size: self.thumbnailSize, completionBlock: { (image,complete) in
                         DispatchQueue.main.async {
                             if self.requestIds[indexPath] != nil {
+                                cell?.phAsset = phAsset
                                 cell?.imageView?.image = image
                                 cell?.update(with: phAsset)
                                 if self.allowedVideo {
